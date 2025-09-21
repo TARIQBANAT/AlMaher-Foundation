@@ -75,6 +75,38 @@
             font-weight: 700;
         }
         
+        /* أزرار تغيير اللغة - تم التعديل عليها */
+        .language-switcher {
+            display: flex;
+            gap: 8px;
+            margin-left: 15px;
+        }
+        
+        .language-btn {
+            width: 40px;
+            height: 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: var(--transition);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .language-btn.arabic {
+            background-image: url('https://plus.unsplash.com/premium_photo-1675865394951-7c5a07b1d768?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+        
+        .language-btn.english {
+            background-image: url('https://plus.unsplash.com/premium_photo-1675865393568-4bbf930ac1fb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8JUQ4JUE3JUQ4JUIzJUQ4JUFBJUQ4JUIxJUQ4JUE3JUQ5JTg0JUQ5JThBJUQ4JUE3JTIwZmxhZ3xlbnwwfHwwfHx8MA%3D%3D');
+        }
+        
+        .language-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        
         /* قائمة الهاتف المحمول */
         .menu-toggle {
             display: none;
@@ -161,9 +193,9 @@
             color: var(--secondary-color);
         }
         
-        /* قسم الهيرو المعدل للجوال */
+        /* قسم الهيرو المعدل للجوال مع تأثير الزوم */
         .hero {
-            background: linear-gradient(rgba(30, 42, 56, 0.7), rgba(30, 42, 56, 0.7)), url('https://images.unsplash.com/photo-1549060279-7e168fce7090?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(30, 42, 56, 0.7), rgba(30, 42, 56, 0.7)), url('https://images.unsplash.com/photo-1758373421568-f7348b3d3b14?w=1200&auto=format&fit=crop&q=80&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
             padding: 90px 0 50px;
             color: white;
             text-align: center;
@@ -171,6 +203,20 @@
             min-height: 60vh;
             display: flex;
             align-items: center;
+            animation: zoomBackground 20s ease infinite;
+            overflow: hidden;
+        }
+        
+        @keyframes zoomBackground {
+            0% {
+                background-size: 100%;
+            }
+            50% {
+                background-size: 120%;
+            }
+            100% {
+                background-size: 100%;
+            }
         }
         
         .hero-content {
@@ -256,10 +302,8 @@
             font-size: 0.95rem;
         }
         
-        .about-image img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        .about-image {
+            display: none; /* تم إخفاء الصورة كما طلبت */
         }
         
         .vision-mission {
@@ -285,10 +329,10 @@
             font-size: 1.2rem;
         }
         
-        /* شريط النجاح المتحرك - تحسين للجوال */
+        /* شريط النجاح المتحرك - تم تحسينه مع دعم ثنائي الاتجاه */
         .success-stories {
             background: var(--dark-bg);
-            padding: 40px 0;
+            padding: 60px 0;
             overflow: hidden;
             position: relative;
             color: white;
@@ -296,8 +340,7 @@
         
         .stories-container {
             display: flex;
-            animation: scroll 40s linear infinite;
-            width: 200%;
+            width: calc(300px * 16); /* زيادة عدد البطاقات */
         }
         
         .story-item {
@@ -306,10 +349,10 @@
             align-items: center;
             margin: 0 15px;
             flex: 0 0 auto;
-            width: 200px;
+            width: 280px; /* زيادة حجم البطاقة */
             background: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            padding: 15px;
+            padding: 20px;
             transition: var(--transition);
         }
         
@@ -319,8 +362,8 @@
         }
         
         .story-item img {
-            width: 100px;
-            height: 100px;
+            width: 150px; /* زيادة حجم الصورة */
+            height: 150px;
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 15px;
@@ -329,22 +372,36 @@
         }
         
         .story-text {
-            font-size: 0.9rem;
+            font-size: 1rem;
             text-align: center;
             font-weight: 600;
         }
         
         .story-category {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             background: rgba(255, 255, 255, 0.2);
-            padding: 3px 10px;
+            padding: 4px 12px;
             border-radius: 20px;
-            margin-top: 8px;
+            margin-top: 10px;
         }
         
-        @keyframes scroll {
+        /* أنيميشن للقصص في كلا الوضعين - تم التصحيح */
+        .success-stories.rtl .stories-container {
+            animation: scroll-rtl 30s linear infinite;
+        }
+        
+        .success-stories.ltr .stories-container {
+            animation: scroll-ltr 30s linear infinite;
+        }
+        
+        @keyframes scroll-rtl {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(calc(-280px * 8)); }
+        }
+        
+        @keyframes scroll-ltr {
+            0% { transform: translateX(calc(-280px * 8)); }
+            100% { transform: translateX(0); }
         }
         
         /* قسم البرامج الخاصة - تحسين للجوال */
@@ -355,7 +412,7 @@
         
         .programs-tabs {
             display: flex;
-            justify-content: center;
+            justify-content: center; /* توسيط الأزرار */
             margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 8px;
@@ -607,6 +664,28 @@
             font-size: 0.9rem;
         }
         
+        /* قسم الفيديو */
+        .video-section {
+            padding: 60px 0;
+            background-color: var(--white);
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .video-container iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+        
         /* قسم التسجيل - تحسين للجوال */
         .cta {
             background: linear-gradient(135deg, var(--secondary-color) 0%, var(--dark-bg) 100%);
@@ -618,12 +697,14 @@
         .cta h2 {
             font-size: 1.8rem;
             margin-bottom: 20px;
+            transition: var(--transition);
         }
         
         .cta p {
             max-width: 700px;
             margin: 0 auto 30px;
             font-size: 1rem;
+            transition: var(--transition);
         }
         
         /* الفوتر - تحسين للجوال */
@@ -796,21 +877,21 @@
                 flex: 0 0 auto;
             }
             
-            .stories-container {
-                animation-duration: 35s;
-            }
-            
             .story-item {
-                width: 180px;
+                width: 220px;
             }
             
             .story-item img {
-                width: 90px;
-                height: 90px;
+                width: 120px;
+                height: 120px;
             }
             
             .impact-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .video-container iframe {
+                height: 300px;
             }
         }
         
@@ -845,13 +926,13 @@
             }
             
             .story-item {
-                width: 160px;
+                width: 200px;
                 margin: 0 10px;
             }
             
             .story-item img {
-                width: 80px;
-                height: 80px;
+                width: 100px;
+                height: 100px;
             }
             
             .story-text {
@@ -874,6 +955,10 @@
                 gap: 10px;
                 margin-top: 20px;
             }
+            
+            .video-container iframe {
+                height: 250px;
+            }
         }
         
         @media (max-width: 380px) {
@@ -889,6 +974,14 @@
             
             .impact-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .story-item {
+                width: 180px;
+            }
+            
+            .video-container iframe {
+                height: 200px;
             }
         }
         
@@ -953,6 +1046,11 @@
                     <h1>جمعية الماهر</h1>
                 </div>
                 
+                <div class="language-switcher">
+                    <button class="language-btn arabic" id="arabicBtn" title="العربية"></button>
+                    <button class="language-btn english" id="englishBtn" title="English"></button>
+                </div>
+                
                 <button class="menu-toggle" id="menuToggle">
                     <span></span>
                     <span></span>
@@ -988,9 +1086,9 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h2>جمعية الماهر للتنمية والريادة</h2>
-                <p>منصة متكاملة تجمع بين الإبداع والرياضة والتطوع لتمكين المجتمعات وبناء مستقبل أفضل</p>
-                <a href="#programs" class="btn btn-primary">اكتشف برامجنا</a>
+                <h2 id="hero-title">جمعية الماهر للتنمية والريادة</h2>
+                <p id="hero-description">منصة متكاملة تجمع بين الإبداع والرياضة والتطوع لتمكين المجتمعات وبناء مستقبل أفضل</p>
+                <a href="#programs" class="btn btn-primary" id="hero-button">اكتشف برامجنا</a>
             </div>
         </div>
     </section>
@@ -999,34 +1097,34 @@
     <section class="impact">
         <div class="container">
             <div class="section-header">
-                <h2>أثرنا في المجتمع</h2>
-                <p>إنجازات جمعية الماهر وأثرها الإيجابي على المجتمع منذ تأسيسها</p>
+                <h2 id="impact-title">أثرنا في المجتمع</h2>
+                <p id="impact-description">إنجازات جمعية الماهر وأثرها الإيجابي على المجتمع منذ تأسيسها</p>
             </div>
             
             <div class="impact-grid">
                 <div class="impact-item">
                     <span class="impact-number" id="impact1">2500</span>
-                    <span class="impact-text">مستفيد من برامجنا</span>
+                    <span class="impact-text" id="impact-text1">مستفيد من برامجنا</span>
                 </div>
                 
                 <div class="impact-item">
                     <span class="impact-number" id="impact2">500</span>
-                    <span class="impact-text">متطوع نشط</span>
+                    <span class="impact-text" id="impact-text2">متطوع نشط</span>
                 </div>
                 
                 <div class="impact-item">
                     <span class="impact-number" id="impact3">120</span>
-                    <span class="impact-text">فعالية ومناسبة</span>
+                    <span class="impact-text" id="impact-text3">فعالية ومناسبة</span>
                 </div>
                 
                 <div class="impact-item">
                     <span class="impact-number" id="impact4">3500</span>
-                    <span class="impact-text">شجرة تم زراعتها</span>
+                    <span class="impact-text" id="impact-text4">شجرة تم زراعتها</span>
                 </div>
                 
                 <div class="impact-item">
                     <span class="impact-number" id="impact5">750</span>
-                    <span class="impact-text">عمل فني معروض</span>
+                    <span class="impact-text" id="impact-text5">عمل فني معروض</span>
                 </div>
             </div>
         </div>
@@ -1037,109 +1135,156 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
-                    <h2>من نحن</h2>
-                    <p>جمعية الماهر للتنمية والريادة هي مؤسسة غير ربحية تهدف إلى تمكين الأطفال والشباب والمبدعين والمجتمعات المهمشة عبر برامج رياضية، فنية، تطوعية وبيئية.</p>
-                    <p>نؤمن بقوة الإبداع والرياضة والتطوع في بناء مجتمعات مزدهرة ومستدامة، ونسعى لخلق فرص حقيقية للتنمية البشرية والاقتصادية.</p>
+                    <h2 id="about-title">من نحن</h2>
+                    <p id="about-p1">جمعية الماهر للتنمية والريادة هي مؤسسة غير ربحية تهدف إلى تمكين الأطفال والشباب والمبدعين والمجتمعات المهمشة عبر برامج رياضية، فنية، تطوعية وبيئية.</p>
+                    <p id="about-p2">نؤمن بقوة الإبداع والرياضة والتطوع في بناء مجتمعات مزدهرة ومستدامة، ونسعى لخلق فرص حقيقية للتنمية البشرية والاقتصادية.</p>
                     
                     <div class="vision-mission">
                         <div class="vision">
-                            <h3><i class="fas fa-eye"></i> رؤيتنا</h3>
-                            <p>أن تصبح منصة دولية رائدة في تمكين الأطفال والشباب والمبدعين لتحقيق أثر اجتماعي وثقافي وبيئي مستدام.</p>
+                            <h3><i class="fas fa-eye"></i> <span id="vision-title">رؤيتنا</span></h3>
+                            <p id="vision-text">أن تصبح منصة دولية رائدة في تمكين الأطفال والشباب والمبدعين لتحقيق أثر اجتماعي وثقافي وبيئي مستدام.</p>
                         </div>
                         
                         <div class="mission">
-                            <h3><i class="fas fa-bullseye"></i> رسالتنا</h3>
-                            <p>تمكين الأطفال والشباب، دعم المبدعين، تشجيع التطوع، وتعزيز الوعي البيئي من خلال برامج متكاملة ومنصة رقمية مبتكرة.</p>
+                            <h3><i class="fas fa-bullseye"></i> <span id="mission-title">رسالتنا</span></h3>
+                            <p id="mission-text">تمكين الأطفال والشباب، دعم المبدعين، تشجيع التطوع، وتعزيز الوعي البيئي من خلال برامج متكاملة ومنصة رقمية مبتكرة.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="about-image lazy-load">
-                    <img src="https://images.unsplash.com/photo-1758373421568-f7348b3d3b14?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D" alt="عن الجمعية">
-                </div>
+                <!-- تم إزالة الصورة كما طلبت -->
             </div>
         </div>
     </section>
 
-    <!-- شريط النجاح المتحرك - المحسّن -->
-    <section class="success-stories">
+    <!-- شريط النجاح المتحرك - المحسّن مع دعم ثنائي الاتجاه -->
+    <section class="success-stories rtl">
         <div class="stories-container">
             <!-- قصص رياضية -->
             <div class="story-item">
                 <img src="https://images.unsplash.com/photo-1678804481502-e0ec1f554085?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTR8fFRhZWt3b25kb3xlbnwwfHwwfHx8MA%3D%3D" alt="نجاح رياضي">
-                <div class="story-text">أحمد: بطل التايكوندو العربي</div>
-                <div class="story-category">رياضة</div>
+                <div class="story-text" data-ar="أحمد: بطل التايكوندو العربي" data-en="Ahmed: Arab Taekwondo Champion">أحمد: بطل التايكوندو العربي</div>
+                <div class="story-category" data-ar="رياضة" data-en="Sports">رياضة</div>
             </div>
             
             <div class="story-item">
                 <img src="https://plus.unsplash.com/premium_photo-1661964418559-c6ce0ffd8e09?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDZ8fHxlbnwwfHx8fHw%3D" alt="نجاح رياضي">
-                <div class="story-text">فريق البيسبول: أبطال الدوري المحلي</div>
-                <div class="story-category">رياضة</div>
+                <div class="story-text" data-ar="فريق البيسبول: أبطال الدوري المحلي" data-en="Baseball Team: Local League Champions">فريق البيسبول: أبطال الدوري المحلي</div>
+                <div class="story-category" data-ar="رياضة" data-en="Sports">رياضة</div>
             </div>
             
             <!-- قصص فنية -->
             <div class="story-item">
                 <img src="https://plus.unsplash.com/premium_photo-1674815482473-cc43ec87c864?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZmVtYWxlJTIwYXJ0ZXMlMjBwYWludGluZ3xlbnwwfHwwfHx8MA%3D%3D" alt="نجاح فني">
-                <div class="story-text">سارة: فنانة تشكيلية مبدعة</div>
-                <div class="story-category">فنون</div>
+                <div class="story-text" data-ar="سارة: فنانة تشكيلية مبدعة" data-en="Sara: Creative Visual Artist">سارة: فنانة تشكيلية مبدعة</div>
+                <div class="story-category" data-ar="فنون" data-en="Arts">فنون</div>
             </div>
             
             <div class="story-item">
                 <img src="https://images.unsplash.com/photo-1682986278549-b32c9180770b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fHw%3D" alt="فن التصوير">
-                <div class="story-text">علي: معرضه الفني يجذب الآلاف</div>
-                <div class="story-category">فنون</div>
+                <div class="story-text" data-ar="علي: معرضه الفني يجذب الآلاف" data-en="Ali: His Art Exhibition Attracts Thousands">علي: معرضه الفني يجذب الآلاف</div>
+                <div class="story-category" data-ar="فنون" data-en="Arts">فنون</div>
             </div>
             
             <!-- قصص تطوعية -->
             <div class="story-item">
                 <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dm9sdW50ZWVyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="نجاح تطوعي">
-                <div class="story-text">محمد: متطوع متميز في دعم اللاجئين</div>
-                <div class="story-category">تطوع</div>
+                <div class="story-text" data-ar="محمد: متطوع متميز في دعم اللاجئين" data-en="Mohammed: Outstanding Volunteer in Refugee Support">محمد: متطوع متميز في دعم اللاجئين</div>
+                <div class="story-category" data-ar="تطوع" data-en="Volunteering">تطوع</div>
             </div>
             
             <div class="story-item">
                 <img src="https://plus.unsplash.com/premium_photo-1681140560757-c40f5e4d977e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="تطوع مجتمعي">
-                <div class="story-text">نادية: قائدة مبادرة تطوعية لزراعة الاشجار</div>
-                <div class="story-category">تطوع</div>
+                <div class="story-text" data-ar="نادية: قائدة مبادرة تطوعية لزراعة الاشجار" data-en="Nadia: Leader of a Volunteer Initiative for Tree Planting">نادية: قائدة مبادرة تطوعية لزراعة الاشجار</div>
+                <div class="story-category" data-ar="تطوع" data-en="Volunteering">تطوع</div>
             </div>
             
             <!-- قصص تعليمية -->
             <div class="story-item">
                 <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGVkdWNhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="نجاح تعليمي">
-                <div class="story-text">ليلى: معلمة ساهمت في تعليم 100 طفل لاجئ</div>
-                <div class="story-category">تعليم</div>
+                <div class="story-text" data-ar="ليلى: معلمة ساهمت في تعليم 100 طفل لاجئ" data-en="Layla: Teacher Who Helped Educate 100 Refugee Children">ليلى: معلمة ساهمت في تعليم 100 طفل لاجئ</div>
+                <div class="story-category" data-ar="تعليم" data-en="Education">تعليم</div>
             </div>
             
             <div class="story-item">
                 <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGVkdWNhdGlvbiUyMGFyYWJpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="تعليم عربي">
-                <div class="story-text">مركز التعليم: تأهيل 500 شاب لسوق العمل</div>
-                <div class="story-category">تعليم</div>
+                <div class="story-text" data-ar="مركز التعليم: تأهيل 500 شاب لسوق العمل" data-en="Education Center: Qualifying 500 Youth for the Job Market">مركز التعليم: تأهيل 500 شاب لسوق العمل</div>
+                <div class="story-category" data-ar="تعليم" data-en="Education">تعليم</div>
             </div>
             
             <!-- قصص بيئية -->
             <div class="story-item">
-                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZW52aXJvbm1lbnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="مشروع بيئي">
-                <div class="story-text">خالد: زرع 1000 شجرة في المناطق الجافة</div>
-                <div class="story-category">بيئة</div>
+                <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZW52aXJvbm1lbnR8ZW58MHx8MHx8fDA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="مشروع بيئي">
+                <div class="story-text" data-ar="خالد: زرع 1000 شجرة في المناطق الجافة" data-en="Khaled: Planted 1000 Trees in Arid Areas">خالد: زرع 1000 شجرة في المناطق الجافة</div>
+                <div class="story-category" data-ar="بيئة" data-en="Environment">بيئة</div>
             </div>
             
             <div class="story-item">
                 <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJlY3ljbGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="إعادة تدوير">
-                <div class="story-text">مشروع إعادة التدوير: تحويل النفايات إلى تحف فنية</div>
-                <div class="story-category">بيئة</div>
+                <div class="story-text" data-ar="مشروع إعادة التدوير: تحويل النفايات إلى تحف فنية" data-en="Recycling Project: Turning Waste into Artistic Masterpieces">مشروع إعادة التدوير: تحويل النفايات إلى تحف فنية</div>
+                <div class="story-category" data-ar="بيئة" data-en="Environment">بيئة</div>
             </div>
             
             <!-- قصص دعم اللاجئين -->
             <div class="story-item">
                 <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dm9sdW50ZWVyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="دعم لاجئين">
-                <div class="story-text">مركز الاستقبال: دعم 200 عائلة لاجئة</div>
-                <div class="story-category">لاجئون</div>
+                <div class="story-text" data-ar="مركز الاستقبال: دعم 200 عائلة لاجئة" data-en="Reception Center: Supporting 200 Refugee Families">مركز الاستقبال: دعم 200 عائلة لاجئة</div>
+                <div class="story-category" data-ar="لاجئون" data-en="Refugees">لاجئون</div>
             </div>
             
             <div class="story-item">
-                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHJlZnVnZWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="لاجئون">
-                <div class="story-text">مريم: لاجئة أصبحت معلمة ومربية</div>
-                <div class="story-category">لاجئون</div>
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHJlZnVnZWV8ZW58MHx8MHx8fDA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="لاجئون">
+                <div class="story-text" data-ar="مريم: لاجئة أصبحت معلمة ومربية" data-en="Maryam: Refugee Who Became a Teacher and Educator">مريم: لاجئة أصبحت معلمة ومربية</div>
+                <div class="story-category" data-ar="لاجئون" data-en="Refugees">لاجئون</div>
+            </div>
+            
+            <!-- تكرار البطاقات لتحقيق تأثير لا نهائي -->
+            <div class="story-item">
+                <img src="https://images.unsplash.com/photo-1678804481502-e0ec1f554085?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTR8fFRhZWt3b25kb3xlbnwwfHwwfHx8MA%3D%3D" alt="نجاح رياضي">
+                <div class="story-text" data-ar="أحمد: بطل التايكوندو العربي" data-en="Ahmed: Arab Taekwondo Champion">أحمد: بطل التايكوندو العربي</div>
+                <div class="story-category" data-ar="رياضة" data-en="Sports">رياضة</div>
+            </div>
+            
+            <div class="story-item">
+                <img src="https://plus.unsplash.com/premium_photo-1661964418559-c6ce0ffd8e09?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxadyZWxlhdGVkfDZ8fHxlbnwwfHx8fHw%3D" alt="نجاح رياضي">
+                <div class="story-text" data-ar="فريق البيسبول: أبطال الدوري المحلي" data-en="Baseball Team: Local League Champions">فريق البيسبول: أبطال الدوري المحلي</div>
+                <div class="story-category" data-ar="رياضة" data-en="Sports">رياضة</div>
+            </div>
+            
+            <div class="story-item">
+                <img src="https://plus.unsplash.com/premium_photo-1674815482473-cc43ec87c864?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8ZmVtYWxlJTIwYXJ0ZXMlMjBwYWludGluZ3xlbnwwfHwwfHx8MA%3D%3D" alt="نجاح فني">
+                <div class="story-text" data-ar="سارة: فنانة تشكيلية مبدعة" data-en="Sara: Creative Visual Artist">سارة: فنانة تشكيلية مبدعة</div>
+                <div class="story-category" data-ar="فنون" data-en="Arts">فنون</div>
+            </div>
+            
+            <div class="story-item">
+                <img src="https://images.unsplash.com/photo-1682986278549-b32c9180770b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fHw%3D" alt="فن التصوير">
+                <div class="story-text" data-ar="علي: معرضه الفني يجذب الآلاف" data-en="Ali: His Art Exhibition Attracts Thousands">علي: معرضه الفني يجذب الآلاف</div>
+                <div class="story-category" data-ar="فنون" data-en="Arts">فنون</div>
+            </div>
+            
+            <div class="story-item">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dm9sdW50ZWVyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="نجاح تطوعي">
+                <div class="story-text" data-ar="محمد: متطوع متميز في دعم اللاجئين" data-en="Mohammed: Outstanding Volunteer in Refugee Support">محمد: متطوع متميز في دعم اللاجئين</div>
+                <div class="story-category" data-ar="تطوع" data-en="Volunteering">تطوع</div>
+            </div>
+            
+            <div class="story-item">
+                <img src="https://plus.unsplash.com/premium_photo-1681140560757-c40f5e4d977e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="تطوع مجتمعي">
+                <div class="story-text" data-ar="نادية: قائدة مبادرة تطوعية لزراعة الاشجار" data-en="Nadia: Leader of a Volunteer Initiative for Tree Planting">نادية: قائدة مبادرة تطوعية لزراعة الاشجار</div>
+                <div class="story-category" data-ar="تطوع" data-en="Volunteering">تطوع</div>
+            </div>
+            
+            <div class="story-item">
+                <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGVkdWNhdGlvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="نجاح تعليمي">
+                <div class="story-text" data-ar="ليلى: معلمة ساهمت في تعليم 100 طفل لاجئ" data-en="Layla: Teacher Who Helped Educate 100 Refugee Children">ليلى: معلمة ساهمت في تعليم 100 طفل لاجئ</div>
+                <div class="story-category" data-ar="تعليم" data-en="Education">تعليم</div>
+            </div>
+            
+            <div class="story-item">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGVkdWNhdGlvbiUyMGFyYWJpY3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="تعليم عربي">
+                <div class="story-text" data-ar="مركز التعليم: تأهيل 500 شاب لسوق العمل" data-en="Education Center: Qualifying 500 Youth for the Job Market">مركز التعليم: تأهيل 500 شاب لسوق العمل</div>
+                <div class="story-category" data-ar="تعليم" data-en="Education">تعليم</div>
             </div>
         </div>
     </section>
@@ -1148,15 +1293,15 @@
     <section class="special-programs" id="programs">
         <div class="container">
             <div class="section-header">
-                <h2>برامجنا الخاصة</h2>
-                <p>برامج متخصصة مصممة لتلبية احتياجات المجتمع وتطوير مهارات الشباب والأطفال</p>
+                <h2 id="programs-title">برامجنا الخاصة</h2>
+                <p id="programs-description">برامج متخصصة مصممة لتلبية احتياجات المجتمع وتطوير مهارات الشباب والأطفال</p>
             </div>
             
             <div class="programs-tabs">
-                <button class="tab-btn active" data-tab="sports">البرامج الرياضية</button>
-                <button class="tab-btn" data-tab="arts">البرامج الفنية</button>
-                <button class="tab-btn" data-tab="volunteer">البرامج التطوعية</button>
-                <button class="tab-btn" data-tab="environment">البرامج البيئية</button>
+                <button class="tab-btn active" data-tab="sports" data-ar="البرامج الرياضية" data-en="Sports Programs">البرامج الرياضية</button>
+                <button class="tab-btn" data-tab="arts" data-ar="البرامج الفنية" data-en="Arts Programs">البرامج الفنية</button>
+                <button class="tab-btn" data-tab="volunteer" data-ar="البرامج التطوعية" data-en="Volunteering Programs">البرامج التطوعية</button>
+                <button class="tab-btn" data-tab="environment" data-ar="البرامج البيئية" data-en="Environmental Programs">البرامج البيئية</button>
             </div>
             
             <div class="programs-content active" id="sports-content">
@@ -1164,27 +1309,27 @@
                     <div class="program-card lazy-load">
                         <img src="https://plus.unsplash.com/premium_photo-1683120899816-d5b05e3984eb?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="برنامج رياضي">
                         <div class="program-card-content">
-                            <h3>أكاديمية الماهر للرياضة</h3>
-                            <p>برنامج تدريبي متكامل يهدف إلى اكتشاف المواهب الرياضية وتطويرها في مختلف الألعاب الرياضية.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="أكاديمية الماهر للرياضة" data-en="Almaher Sports Academy">أكاديمية الماهر للرياضة</h3>
+                            <p data-ar="برنامج تدريبي متكامل يهدف إلى اكتشاف المواهب الرياضية وتطويرها في مختلف الألعاب الرياضية." data-en="A comprehensive training program aimed at discovering and developing sports talents in various games.">برنامج تدريبي متكامل يهدف إلى اكتشاف المواهب الرياضية وتطويرها في مختلف الألعاب الرياضية.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                     
                     <div class="program-card lazy-load">
                         <img src="https://images.unsplash.com/photo-1687254426928-f172a8328240?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="برنامج رياضي">
                         <div class="program-card-content">
-                            <h3>دوري الشباب</h3>
-                            <p>بطولات دورية في كرة القدم، السلة، الطائرة وغيرها من الرياضات لتعزيز الروح الرياضية.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="دوري الشباب" data-en="Youth League">دوري الشباب</h3>
+                            <p data-ar="بطولات دورية في كرة القدم، السلة، الطائرة وغيرها من الرياضات لتعزيز الروح الرياضية." data-en="Regular tournaments in football, basketball, volleyball and other sports to enhance sportsmanship.">بطولات دورية في كرة القدم، السلة، الطائرة وغيرها من الرياضات لتعزيز الروح الرياضية.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                     
                     <div class="program-card lazy-load">
-                        <img src="https://images.unsplash.com/photo-1721339041014-665152362a0d?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="برنامج رياضي">
+                        <img src="https://plus.unsplash.com/premium_photo-1716851442694-846a021977ec?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="برنامج رياضي">
                         <div class="program-card-content">
-                            <h3>رياضة من أجل الحياة</h3>
-                            <p>مبادرة تهدف إلى تشجيع ممارسة الرياضة كأسلوب حياة صحي لجمister جميع فئات المجتمع.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="رياضة من أجل الحياة" data-en="Sports for Life">رياضة من أجل الحياة</h3>
+                            <p data-ar="مبادرة تهدف إلى تشجيع ممارسة الرياضة كأسلوب حياة صحي لجميع فئات المجتمع." data-en="An initiative aimed at encouraging sports as a healthy lifestyle for all segments of society.">مبادرة تهدف إلى تشجيع ممارسة الرياضة كأسلوب حياة صحي لجميع فئات المجتمع.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                 </div>
@@ -1193,29 +1338,29 @@
             <div class="programs-content" id="arts-content">
                 <div class="program-grid">
                     <div class="program-card lazy-load">
-                        <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGFydHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="برنامج فني">
+                        <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fGFydHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="برogram فني">
                         <div class="program-card-content">
-                            <h3>مركز الإبداع الفني</h3>
-                            <p>ورش عمل ودورات تدريبية في مختلف الفنون التشكيلية واليدوية لاكتشاف المواهب الفنية.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="مركز الإبداع الفني" data-en="Artistic Creativity Center">مركز الإبداع الفني</h3>
+                            <p data-ar="ورش عمل ودورات تدريبية في مختلف الفنون التشكيلية واليدوية لاكتشاف المواهب الفنية." data-en="Workshops and training courses in various visual and manual arts to discover artistic talents.">ورش عمل ودورات تدريبية في مختلف الفنون التشكيلية واليدوية لاكتشاف المواهب الفنية.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                     
                     <div class="program-card lazy-load">
                         <img src="https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGFydHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="برنامج فني">
                         <div class="program-card-content">
-                            <h3>معرض المواهب</h3>
-                            <p>منصة لعرض الأعمال الفنية للمبدعين المحليين وتوفير فرص تسويقية لأعمالهم.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="معرض المواهب" data-en="Talent Exhibition">معرض المواهب</h3>
+                            <p data-ar="منصة لعرض الأعمال الفنية للمبدعين المحليين وتوفير فرص تسويقية لأعمالهم." data-en="A platform to display the artistic works of local creators and provide marketing opportunities for their work.">منصة لعرض الأعمال الفنية للمبدعين المحليين وتوفير فرص تسويقية لأعمالهم.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                     
                     <div class="program-card lazy-load">
-                        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJ0fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="برنامج فني">
+                        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXJ0fGVufDB8fDB8fHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="برنامج فني">
                         <div class="program-card-content">
-                            <h3>الفن في الأحياء</h3>
-                            <p>مشروع يجمع بين الفن والمجتمع من خلال تزيين الأحياء برسومات جدارية فنية.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="الفن في الأحياء" data-en="Art in Neighborhoods">الفن في الأحياء</h3>
+                            <p data-ar="مشروع يجمع بين الفن والمجتمع من خلال تزيين الأحياء برسومات جدارية فنية." data-en="A project that combines art and society by decorating neighborhoods with artistic murals.">مشروع يجمع بين الفن والمجتمع من خلال تزيين الأحياء برسومات جدارية فنية.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                 </div>
@@ -1224,29 +1369,29 @@
             <div class="programs-content" id="volunteer-content">
                 <div class="program-grid">
                     <div class="program-card lazy-load">
-                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dm9sdW50ZWVyfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="برنامج تطوعي">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dm9sdW50ZWVyfGVufDB8fDB8fHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="برنامج تطوعي">
                         <div class="program-card-content">
-                            <h3>سفراء الخير</h3>
-                            <p>برنامج لتأهيل وتدريب المتطوعين وتنظيم جهودهم في مبادرات خدمة المجتمع.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="سفراء الخير" data-en="Goodwill Ambassadors">سفراء الخير</h3>
+                            <p data-ar="برنامج لتأهيل وتدريب المتطوعين وتنظيم جهودهم في مبادرات خدمة المجتمع." data-en="A program to qualify and train volunteers and organize their efforts in community service initiatives.">برنامج لتأهيل وتدريب المتطوعين وتنظيم جهودهم في مبادرات خدمة المجتمع.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                     
                     <div class="program-card lazy-load">
-                        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dm9sdW50ZWVyJTIwd29ya3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="برنامج تطوعي">
+                        <img src="https://plus.unsplash.com/premium_photo-1683121334505-907a00cf904c?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="برنامج تطوعي">
                         <div class="program-card-content">
-                            <h3>أسبوع التطوع</h3>
-                            <p>فعالية سنوية تجمع المتطوعين في مشاريع خدمية متنوعة لتحسين المجتمع المحلي.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="أسبوع التطوع" data-en="Volunteering Week">أسبوع التطوع</h3>
+                            <p data-ar="فعالية سنوية تجمع المتطوعين в مشاريع خدمية متنوعة لتحسين المجتمع المحلي." data-en="An annual event that brings volunteers together in various service projects to improve the local community.">فعالية سنوية تجمع المتطوعين في مشاريع خدمية متنوعة لتحسين المجتمع المحلي.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                     
                     <div class="program-card lazy-load">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tbXVuaXR5JTIwc3VwcG9ydHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="برنامج تطوعي">
+                        <img src="https://plus.unsplash.com/premium_photo-1683134258569-6b7c18058349?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="برنامج تطوعي">
                         <div class="program-card-content">
-                            <h3>يداً بيد</h3>
-                            <p>مبادرة تطوعية تهدف إلى دعم الأسر المحتاجة وتوفير متطلباتهم الأساسية.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="يداً بيد" data-en="Hand in Hand">يداً بيد</h3>
+                            <p data-ar="مبادرة تطوعية تهدف إلى دعم الأسر المحتاجة وتوفير متطلباتهم الأساسية." data-en="A volunteer initiative aimed at supporting needy families and providing their basic requirements.">مبادرة تطوعية تهدف إلى دعم الأسر المحتاجة وتوفير متطلباتهم الأساسية.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                 </div>
@@ -1255,29 +1400,29 @@
             <div class="programs-content" id="environment-content">
                 <div class="program-grid">
                     <div class="program-card lazy-load">
-                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZW52aXJvbm1lbnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="برنامج بيئي">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZW52aXJvbm1lbnR8ZW58MHx8MHx8fDA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="برنامج بيئي">
                         <div class="program-card-content">
-                            <h3>شجرة لكل مواطن</h3>
-                            <p>مشروع طموح لزراعة الأشجار في المدن والأرياف لمكافحة التصحر وتحسين البيئة.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="شجرة لكل مواطن" data-en="A Tree for Every Citizen">شجرة لكل مواطن</h3>
+                            <p data-ar="مشروع طموح لزراعة الأشجار في المدن والأرياف لمكافحة التصحر وتحسين البيئة." data-en="An ambitious project to plant trees in cities and countryside to combat desertification and improve the environment.">مشروع طموح لزراعة الأشجار في المدن والأرياف لمكافحة التصحر وتحسين البيئة.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                     
                     <div class="program-card lazy-load">
                         <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJlY3ljbGluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="برنامج بيئي">
                         <div class="program-card-content">
-                            <h3>إعادة التدوير</h3>
-                            <p>برنامج توعوي وعملي لإعادة تدوير النفايات والاستفادة منها في صناعات مبتكرة.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="إعادة التدوير" data-en="Recycling">إعادة التدوير</h3>
+                            <p data-ar="برنامج توعوي وعملي لإعادة تدوير النفايات والاستفادة منها في صناعات مبتكرة." data-en="An awareness and practical program for recycling waste and using it in innovative industries.">برنامج توعوي وعملي لإعادة تدوير النفايات والاستفادة منها في صناعات مبتكرة.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                     
                     <div class="program-card lazy-load">
                         <img src="https://images.unsplash.com/photo-1667996112957-4a12a76cb6ac?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="برنامج بيئي">
                         <div class="program-card-content">
-                            <h3>بيئتنا مسؤوليتنا</h3>
-                            <p>حملة توعوية شاملة للحفاظ على البيئة ونشر الثقافة البيئية بين جميع فئات المجتمع.</p>
-                            <a href="#" class="btn btn-primary">المزيد</a>
+                            <h3 data-ar="بيئتنا مسؤوليتنا" data-en="Our Environment, Our Responsibility">بيئتنا مسؤوليتنا</h3>
+                            <p data-ar="حملة توعوية شاملة للحفاظ على البيئة ونشر الثقافة البيئية بين جميع فئات المجتمع." data-en="A comprehensive awareness campaign to preserve the environment and spread environmental culture among all segments of society.">حملة توعوية شاملة للحفاظ على البيئة ونشر الثقافة البيئية بين جميع فئات المجتمع.</p>
+                            <a href="#" class="btn btn-primary" data-ar="المزيد" data-en="More">المزيد</a>
                         </div>
                     </div>
                 </div>
@@ -1289,49 +1434,49 @@
     <section class="target-audience">
         <div class="container">
             <div class="section-header">
-                <h2>فئاتنا المستهدفة</h2>
-                <p>صممت منصة جمعية الماهر لتلائم احتياجات المبدعين في مختلف المجالات</p>
+                <h2 id="audience-title">فئاتنا المستهدفة</h2>
+                <p id="audience-description">صممت منصة جمعية الماهر لتلائم احتياجات المبدعين في مختلف المجالات</p>
             </div>
             
             <div class="audience-grid">
                 <div class="audience-item lazy-load">
                     <i class="fas fa-pen-fancy"></i>
-                    <h3>الكتّاب والأدباء</h3>
+                    <h3 data-ar="الكتّاب والأدباء" data-en="Writers & Authors">الكتّاب والأدباء</h3>
                 </div>
                 
                 <div class="audience-item lazy-load">
                     <i class="fas fa-camera"></i>
-                    <h3>المصورون الفوتوغرافيون</h3>
+                    <h3 data-ar="المصورون الفوتوغرافيون" data-en="Photographers">المصورون الفوتوغرافيون</h3>
                 </div>
                 
                 <div class="audience-item lazy-load">
                     <i class="fas fa-paint-brush"></i>
-                    <h3>الرسامون والفنانون</h3>
+                    <h3 data-ar="الرسامون والفنانون" data-en="Painters & Artists">الرسامون والفنانون</h3>
                 </div>
                 
                 <div class="audience-item lazy-load">
                     <i class="fas fa-video"></i>
-                    <h3>صانعو المحتوى البصري</h3>
+                    <h3 data-ar="صانعو المحتوى البصري" data-en="Visual Content Creators">صانعو المحتوى البصري</h3>
                 </div>
 
                 <div class="audience-item lazy-load">
                     <i class="fas fa-baseball-ball"></i>
-                    <h3>الرياضيون والمدربون</h3>
+                    <h3 data-ar="الرياضيون والمدربون" data-en="Athletes & Coaches">الرياضيون والمدربون</h3>
                 </div>
 
                 <div class="audience-item lazy-load">
                     <i class="fas fa-hands-helping"></i>
-                    <h3>المتطوعون</h3>
+                    <h3 data-ar="المتطوعون" data-en="Volunteers">المتطوعون</h3>
                 </div>
                 
                 <div class="audience-item lazy-load">
                     <i class="fas fa-hands"></i>
-                    <h3>الفنون الحرفية</h3>
+                    <h3 data-ar="الفنون الحرفية" data-en="Handicrafts">الفنون الحرفية</h3>
                 </div>
                 
                 <div class="audience-item lazy-load">
                     <i class="fas fa-chart-line"></i>
-                    <h3>التنمية البشرية</h3>
+                    <h3 data-ar="التنمية البشرية" data-en="Human Development">التنمية البشرية</h3>
                 </div>
             </div>
         </div>
@@ -1341,62 +1486,62 @@
     <section class="sections" id="sections">
         <div class="container">
             <div class="section-header">
-                <h2>أقسام المنصة</h2>
-                <p>اكتشف الأقسام المختلفة التي صممناها خصيصًا لدعم إبداعاتك وعرضها للعالم</p>
+                <h2 id="sections-title">أقسام المنصة</h2>
+                <p id="sections-description">اكتشف الأقسام المختلفة التي صممناها خصيصًا لدعم إبداعاتك وعرضها للعالم</p>
             </div>
             
             <div class="sections-grid">
                 <div class="section-card lazy-load">
                     <img src="https://images.unsplash.com/photo-1560785219-cc81ab373cd3?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="مكتبة الأفلام">
                     <div class="section-card-content">
-                        <h3> مكتبة الأفلام الريادية</h3>
-                        <p>مجموعة منتقاة من الأفلام الريادية والتعليمية بمشغل فيديو متقدم</p>
-                        <a href="#" class="btn btn-outline">استكشف</a>
+                        <h3 data-ar="مكتبة الأفلام الريادية" data-en="Pioneering Film Library">مكتبة الأفلام الريادية</h3>
+                        <p data-ar="مجموعة منتقاة من الأفلام الريادية والتعليمية بمشغل فيديو متقدم" data-en="A curated collection of pioneering and educational films with an advanced video player">مجموعة منتقاة من الأفلام الريادية والتعليمية بمشغل فيديو متقدم</p>
+                        <a href="#" class="btn btn-outline" data-ar="استكشف" data-en="Explore">استكشف</a>
                     </div>
                 </div>
                 
                 <div class="section-card lazy-load">
                     <img src="https://images.unsplash.com/photo-1497704009475-24f74754c24e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="معرض الصور">
                     <div class="section-card-content">
-                        <h3>معرض الصور الفوتوغرافية</h3>
-                        <p>عرض احترافي للأعمال الفوتوغرافية مع إمكانية الشراء بجودات مختلفة</p>
-                        <a href="#" class="btn btn-outline">استكشف</a>
+                        <h3 data-ar="معرض الصور الفوتوغرافية" data-en="Photography Gallery">معرض الصور الفوتوغرافية</h3>
+                        <p data-ar="عرض احترافي للأعمال الفوتوغرافية مع إمكانية الشراء بجودات مختلفة" data-en="Professional display of photographic works with the possibility of purchase in different qualities">عرض احترافي للأعمال الفوتوغرافية مع إمكانية الشراء بجودات مختلفة</p>
+                        <a href="#" class="btn btn-outline" data-ar="استكشف" data-en="Explore">استكشف</a>
                     </div>
                 </div>
                 
                 <div class="section-card lazy-load">
                     <img src="https://images.unsplash.com/photo-1708406620473-3641dc3185ed?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="معرض اللوحات">
                     <div class="section-card-content">
-                        <h3>معرض اللوحات الفنية</h3>
-                        <p>عرض شامل للأعمال الفنية والتشكيلية بمعلومات عن الفنانين وأسعار الأعمال</p>
-                        <a href="#" class="btn btn-outline">استكشف</a>
+                        <h3 data-ar="معرض اللوحات الفنية" data-en="Art Paintings Gallery">معرض اللوحات الفنية</h3>
+                        <p data-ar="عرض شامل للأعمال الفنية والتشكيلية بمعلومات عن الفنانين وأسعار الأعمال" data-en="Comprehensive display of artistic and plastic works with information about artists and work prices">عرض شامل للأعمال الفنية والتشكيلية بمعلومات عن الفنانين وأسعار الأعمال</p>
+                        <a href="#" class="btn btn-outline" data-ar="استكشف" data-en="Explore">استكشف</a>
                     </div>
                 </div>
                 
                 <div class="section-card lazy-load">
                     <img src="https://images.unsplash.com/photo-1631709101256-5109dcdbedbd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="الفنون التراثية">
                     <div class="section-card-content">
-                        <h3>معرض الفنون التراثية</h3>
-                        <p>عرض وبيع المنتجات الحرفية والتراثية مع معلومات عن الحرفيين وتقنيات الصنع</p>
-                        <a href="#" class="btn btn-outline">استكشف</a>
+                        <h3 data-ar="معرض الفنون التراثية" data-en="Heritage Arts Gallery">معرض الفنون التراثية</h3>
+                        <p data-ar="عرض وبيع المنتجات الحرفية والتراثية مع معلومات عن الحرفيين وتقنيات الصنع" data-en="Display and sale of handicraft and heritage products with information about craftsmen and manufacturing techniques">عرض وبيع المنتجات الحرفية والتراثية مع معلومات عن الحرفيين وتقنيات الصنع</p>
+                        <a href="#" class="btn btn-outline" data-ar="استكشف" data-en="Explore">استكشف</a>
                     </div>
                 </div>
                 
                 <div class="section-card lazy-load">
-                    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlicmFyeXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="مكتبة الكتب">
+                    <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGlicmFyeXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="م مكتبة الكتب">
                     <div class="section-card-content">
-                        <h3>مكتبة الكتب الثقافية</h3>
-                        <p>مجموعة شاملة من الكتب الرقمية في الأدب، التاريخ، الفلسفة، والتراث</p>
-                        <a href="#" class="btn btn-outline">استكشف</a>
+                        <h3 data-ar="مكتبة الكتب الثقافية" data-en="Cultural Books Library">مكتبة الكتب الثقافية</h3>
+                        <p data-ar="مجموعة شاملة من الكتب الرقمية في الأدب، التاريخ، الفلسفة، والتراث" data-en="A comprehensive collection of digital books in literature, history, philosophy, and heritage">مجموعة شاملة من الكتب الرقمية في الأدب، التاريخ، الفلسفة، والتراث</p>
+                        <a href="#" class="btn btn-outline" data-ar="استكشف" data-en="Explore">استكشف</a>
                     </div>
                 </div>
                 
                 <div class="section-card lazy-load">
                     <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="مدونة الكتابة">
                     <div class="section-card-content">
-                        <h3>مدونة الكتابة الإبداعية</h3>
-                        <p>منصة لنشر المقالات والقصص القصيرة والشعر بتصنيفات أدبية متنوعة</p>
-                        <a href="#" class="btn btn-outline">استكشف</a>
+                        <h3 data-ar="مدونة الكتابة الإبداعية" data-en="Creative Writing Blog">مدونة الكتابة الإبداعية</h3>
+                        <p data-ar="منصة لنشر المقالات والقصص القصيرة والشعر بتصنيفات أدبية متنوعة" data-en="A platform for publishing articles, short stories, and poetry with various literary classifications">منصة لنشر المقالات والقصص القصيرة والشعر بتصنيفات أدبية متنوعة</p>
+                        <a href="#" class="btn btn-outline" data-ar="استكشف" data-en="Explore">استكشف</a>
                     </div>
                 </div>
             </div>
@@ -1407,18 +1552,18 @@
     <section class="blog">
         <div class="container">
             <div class="section-header">
-                <h2>أحدث الأخبار والفعاليات</h2>
-                <p>تابع آخر أخبار الجمعية والفعاليات القادمة</p>
+                <h2 id="blog-title">أحدث الأخبار والفعاليات</h2>
+                <p id="blog-description">تابع آخر أخبار الجمعية والفعاليات القادمة</p>
             </div>
             
             <div class="blog-grid">
                 <div class="blog-card lazy-load">
-                    <img src="https://images.unsplash.com/photo-1726931535180-d27a2ffd7474?q=80&w=764&auto=format&fit=c crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="خبر">
+                    <img src="https://images.unsplash.com/photo-1726931535180-d27a2ffd7474?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="خبر">
                     <div class="blog-card-content">
                         <span class="blog-card-date">15 يونيو 2023</span>
-                        <h3>معرض المواهب الفنية يختتم فعالياته بنجاح كبير</h3>
-                        <p>اختتم معرض المواهب الفنية الذي نظمته الجمعية فعالياته بمشاركة أكثر من 50 فناناً محلياً.</p>
-                        <a href="#" class="btn btn-primary">اقرأ المزيد</a>
+                        <h3 data-ar="معرض المواهب الفنية يختتم فعالياته بنجاح كبير" data-en="Talent Art Exhibition Concludes with Great Success">معرض المواهب الفنية يختتم فعالياته بنجاح كبير</h3>
+                        <p data-ar="اختتم معرض المواهب الفنية الذي نظمته الجمعية فعالياته بمشاركة أكثر من 50 فناناً محلياً." data-en="The Talent Art Exhibition organized by the Association concluded its activities with the participation of more than 50 local artists.">اختتم معرض المواهب الفنية الذي نظمته الجمعية فعالياته بمشاركة أكثر من 50 فناناً محلياً.</p>
+                        <a href="#" class="btn btn-primary" data-ar="اقرأ المزيد" data-en="Read More">اقرأ المزيد</a>
                     </div>
                 </div>
                 
@@ -1426,19 +1571,19 @@
                     <img src="https://images.unsplash.com/photo-1669313220506-1eefd6fd84b2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="خبر">
                     <div class="blog-card-content">
                         <span class="blog-card-date">8 يونيو 2023</span>
-                        <h3>انطلاق دوري الشباب لكرة القدم بمشاركة 20 فريقاً</h3>
-                        <p>انطلقت يوم أمس منافسات دوري الشباب لكرة القدم بمشاركة 20 فريقاً من مختلف الأحياء.</p>
-                        <a href="#" class="btn btn-primary">اقرأ المزيد</a>
+                        <h3 data-ar="انطلاق دوري الشباب لكرة القدم بمشاركة 20 فريقاً" data-en="Youth Football League Launches with Participation of 20 Teams">انطلاق دوري الشباب لكرة القدم بمشاركة 20 فريقاً</h3>
+                        <p data-ar="انطلقت يوم أمس منافسات دوري الشباب لكرة القدم بمشاركة 20 فريقاً من مختلف الأحياء." data-en="The Youth Football League competitions launched yesterday with the participation of 20 teams from different neighborhoods.">انطلقت يوم أمس منافسات دوري الشباب لكرة القدم بمشاركة 20 فريقاً من مختلف الأحياء.</p>
+                        <a href="#" class="btn btn-primary" data-ar="اقرأ المزيد" data-en="Read More">اقرأ المزيد</a>
                     </div>
                 </div>
                 
                 <div class="blog-card lazy-load">
-                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZW52aXJvbm1lbnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="خبر">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZW52aXJvbm1lbnR8ZW58MHx8MHx8fDA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="خبر">
                     <div class="blog-card-content">
                         <span class="blog-card-date">1 يونيو 2023</span>
-                        <h3>مبادرة "شجرة لكل مواطن" تزرع 5000 شجرة هذا العام</h3>
-                        <p>حققت مبادرة "شجرة لكل مواطن" هدفها لهذا العام بزراعة 5000 شجرة في مختلف أنحاء المدينة.</p>
-                        <a href="#" class="btn btn-primary">اقرأ المزيد</a>
+                        <h3 data-ar="مبادرة 'شجرة لكل مواطن' تزرع 5000 شجرة هذا العام" data-en="'A Tree for Every Citizen' Initiative Plants 5000 Trees This Year">مبادرة "شجرة لكل مواطن" تزرع 5000 شجرة هذا العام</h3>
+                        <p data-ar="حققت مبادرة 'شجرة لكل مواطن' هدفها لهذا العام بزراعة 5000 شجرة في مختلف أنحاء المدينة." data-en="The 'A Tree for Every Citizen' initiative achieved its goal this year by planting 5000 trees throughout the city.">حققت مبادرة "شجرة لكل مواطن" هدفها لهذا العام بزراعة 5000 شجرة في مختلف أنحاء المدينة.</p>
+                        <a href="#" class="btn btn-primary" data-ar="اقرأ المزيد" data-en="Read More">اقرأ المزيد</a>
                     </div>
                 </div>
             </div>
@@ -1448,9 +1593,9 @@
     <!-- قسم التسجيل -->
     <section class="cta">
         <div class="container">
-            <h2>انضم إلى منصة الماهر</h2>
-            <p>سجل في منصتنا لتصبح جزءاً من مجتمع الماهر وتستفيد من برامجنا المتعددة</p>
-            <a href="#" class="btn btn-outline">سجل الآن</a>
+            <h2 id="cta-title">انضم إلى منصة الماهر</h2>
+            <p id="cta-description">سجل في منصتنا لتصبح جزءاً من مجتمع الماهر وتستفيد من برامجنا المتعددة</p>
+            <a href="#" class="btn btn-outline" data-ar="سجل الآن" data-en="Register Now">سجل الآن</a>
         </div>
     </section>
 
@@ -1459,8 +1604,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>عن الجمعية</h3>
-                    <p>جمعية الماهر للتنمية والريادة هي مؤسسة غير ربحية تهدف إلى تمكين الأطفال والشباب والمبدعين والمجتمعات المهمشة.</p>
+                    <h3 data-ar="عن الجمعية" data-en="About the Association">عن الجمعية</h3>
+                    <p data-ar="جمعية الماهر للتنمية والريادة هي مؤسسة غير ربحية تهدف إلى تمكين الأطفال والشباب والمبدعين والمجتمعات المهمشة." data-en="Almaher Association for Development and Pioneering is a non-profit organization that aims to empower children, youth, creators, and marginalized communities.">جمعية الماهر للتنمية والريادة هي مؤسسة غير ربحية تهدف إلى تمكين الأطفال والشباب والمبدعين والمجتمعات المهمشة.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1470,41 +1615,41 @@
                 </div>
                 
                 <div class="footer-column">
-                    <h3>روابط سريعة</h3>
+                    <h3 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h3>
                     <ul>
-                        <li><a href="#">الرئيسية</a></li>
-                        <li><a href="#about">من نحن</a></li>
-                        <li><a href="#programs">برامجنا</a></li>
-                        <li><a href="#sections">أقسام المنصة</a></li>
-                        <li><a href="#contact">اتصل بنا</a></li>
+                        <li><a href="#" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                        <li><a href="#about" data-ar="من نحن" data-en="About Us">من نحن</a></li>
+                        <li><a href="#programs" data-ar="برامجنا" data-en="Our Programs">برامجنا</a></li>
+                        <li><a href="#sections" data-ar="أقسام المنصة" data-en="Platform Sections">أقسام المنصة</a></li>
+                        <li><a href="#contact" data-ar="اتصل بنا" data-en="Contact Us">اتصل بنا</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>برامجنا</h3>
+                    <h3 data-ar="برامجنا" data-en="Our Programs">برامجنا</h3>
                     <ul>
-                        <li><a href="#">البرامج الرياضية</a></li>
-                        <li><a href="#">البرامج الفنية</a></li>
-                        <li><a href="#">البرامج التطوعية</a></li>
-                        <li><a href="#">البرامج البيئية</a></li>
-                        <li><a href="#">برامج دعم اللاجئين</a></li>
+                        <li><a href="#" data-ar="البرامج الرياضية" data-en="Sports Programs">البرامج الرياضية</a></li>
+                        <li><a href="#" data-ar="البرامج الفنية" data-en="Arts Programs">البرامج الفنية</a></li>
+                        <li><a href="#" data-ar="البرامج التطوعية" data-en="Volunteering Programs">البرامج التطوعية</a></li>
+                        <li><a href="#" data-ar="البرامج البيئية" data-en="Environmental Programs">البرامج البيئية</a></li>
+                        <li><a href="#" data-ar="برامج دعم اللاجئين" data-en="Refugee Support Programs">برامج دعم اللاجئين</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>اتصل بنا</h3>
+                    <h3 data-ar="اتصل بنا" data-en="Contact Us">اتصل بنا</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> العنوان: الاردن، عمان</li>
-                        <li><i class="fas fa-phone"></i> الهاتف: 00962987654321</li>
-                        <li><i class="fas fa-envelope"></i> البريد: info@almaher.org</li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-ar="العنوان: الاردن، عمان" data-en="Address: Jordan, Amman">العنوان: الاردن، عمان</span></li>
+                        <li><i class="fas fa-phone"></i> <span data-ar="الهاتف: 00962987654321" data-en="Phone: 00962987654321">الهاتف: 00962987654321</span></li>
+                        <li><i class="fas fa-envelope"></i> <span data-ar="البريد: info@almaher.org" data-en="Email: info@almaher.org">البريد: info@almaher.org</span></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>جميع الحقوق محفوظة &copy; 2023 جمعية الماهر للتنمية والريادة</p>
+                <p data-ar="جميع الحقوق محفوظة &copy; 2023 جمعية الماهر للتنمية والريادة" data-en="All Rights Reserved &copy; 2023 Almaher Association for Development and Pioneering">جميع الحقوق محفوظة &copy; 2023 جمعية الماهر للتنمية والريادة</p>
                 <div class="contact-info">
-                    <a href="#">سياسة الخصوصية</a> | <a href="#">شروط الاستخدام</a>
+                    <a href="#" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a> | <a href="#" data-ar="شروط الاستخدام" data-en="Terms of Use">شروط الاستخدام</a>
                 </div>
             </div>
         </div>
@@ -1662,8 +1807,67 @@
                 }
                 lastTouchEnd = now;
             }, false);
+            
+            // أزرار تغيير اللغة
+            const arabicBtn = document.getElementById('arabicBtn');
+            const englishBtn = document.getElementById('englishBtn');
+            const successStoriesSection = document.querySelector('.success-stories');
+            
+            // دالة لتغيير اللغة - تم تحسينها مع دعم ثنائي الاتجاه للرسوم المتحركة
+            function changeLanguage(lang) {
+                // تغيير لغة واتجاه المستند
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                
+                // إعادة تعيين الرسوم المتحركة لشريط القصص
+                successStoriesSection.classList.remove('rtl', 'ltr');
+                void successStoriesSection.offsetWidth; // إعادة التدفق لإعادة تشغيل الرسوم المتحركة
+                
+                if (lang === 'ar') {
+                    successStoriesSection.classList.add('rtl');
+                } else {
+                    successStoriesSection.classList.add('ltr');
+                }
+                
+                // تحديث النصوص
+                document.querySelectorAll('[data-ar], [data-en]').forEach(element => {
+                    if (element.hasAttribute('data-ar') && element.hasAttribute('data-en')) {
+                        element.textContent = lang === 'ar' ? element.getAttribute('data-ar') : element.getAttribute('data-en');
+                    }
+                });
+                
+                // تحديث النصوص في عناصر الإدخال
+                document.querySelectorAll('input[data-ar], input[data-en], textarea[data-ar], textarea[data-en]').forEach(element => {
+                    if (element.hasAttribute('data-ar') && element.hasAttribute('data-en')) {
+                        element.placeholder = lang === 'ar' ? element.getAttribute('data-ar') : element.getAttribute('data-en');
+                    }
+                });
+                
+                // تحديث عنوان الصفحة
+                document.title = lang === 'ar' ? 'جمعية الماهر للتنمية والريادة' : 'Almaher Association for Development and Pioneering';
+            }
+            
+            // إضافة مستمعي الأحداث لأزرار اللغة
+            arabicBtn.addEventListener('click', function() {
+                changeLanguage('ar');
+            });
+            
+            englishBtn.addEventListener('click', function() {
+                changeLanguage('en');
+            });
+            
+            // إصلاح إعادة تشغيل الرسوم المتحركة عند تغيير حجم النافذة
+            window.addEventListener('resize', function() {
+                successStoriesSection.classList.remove('rtl', 'ltr');
+                void successStoriesSection.offsetWidth;
+                
+                if (document.documentElement.dir === 'rtl') {
+                    successStoriesSection.classList.add('rtl');
+                } else {
+                    successStoriesSection.classList.add('ltr');
+                }
+            });
         });
     </script>
 </body>
-
 </html>
